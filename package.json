@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/TraeCoker/rpn-calculator#readme",
   "dependencies": {
-    "inquirer": "^10.0.4"
+    "inquirer": "^8.1.5"
   },
   "devDependencies": {
     "jest": "^29.7.0"
