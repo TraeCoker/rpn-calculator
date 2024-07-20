@@ -1,9 +1,6 @@
-// Calculator module to export Calculator class
-// 
-// To Build:
-// -compute function w/ equation as input
-//    -Return result or error
+/* Calculator module to export Calculator class */
 
+// import Stack class to use as Calculator property
 import Stack from "./stack.js"
 
 
@@ -27,6 +24,12 @@ export default class Calculator {
             } else {
                 let num1 = stack.pop()
                 let num2 = stack.pop()
+                // if there are not enough numbers on the stack, clear the stack and return an error
+                if (num1 === null || num2 === null) {
+                    stack.clear()
+                    return "Error: Invalid input. Please enter a valid equation in RPN format."
+                }
+                // evaluate based on operator
                 switch (item) {
                     case "+": // addition
                         stack.push(num2 + num1)
@@ -40,6 +43,10 @@ export default class Calculator {
                     case "*": //multiplication
                         stack.push(num2 * num1)
                         break
+                    default:
+                        // if character is not valid, clear the stack and return an error
+                        stack.clear()
+                        return "Error: Invalid input. Please enter a valid equation in RPN format."
                 }
             }
         }
@@ -48,5 +55,4 @@ export default class Calculator {
         return this.stack.peek()
     }
 }
-
 
