@@ -2,7 +2,6 @@
 //
 // To build:
 // -Stack class with
-//   -constructor
 //   -push()
 //   -pop()
 //   -clear()
@@ -12,5 +11,13 @@ class Node {
     constructor(data) {
         this.data = data
         this.next = null
+    }
+}
+
+// Stack is a linked list
+export default class Stack {
+    constructor() {
+        this.top = null
+        this.size = 0
     }
 }
