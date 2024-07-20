@@ -1,8 +1,4 @@
-// Stack module to export the linked list Stack class
-//
-// To build:
-// -Stack class with
-//   -clear()
+/* Stack module to export the linked list Stack class */
 
 // single unit of data on the stack
 class Node {
@@ -35,5 +31,14 @@ export default class Stack {
         this.size --
         return popped.data
     }
+
+    // remove all nodes from stack
+    clear() {
+        this.top = null
+        this.size = 0
+        return this.top
+    }
 }
+
+
 
