@@ -20,4 +20,15 @@ export default class Stack {
         this.top = null
         this.size = 0
     }
+
+    push(data) {
+        const newNode = new Node(data)
+        newNode.next = this.top
+        this.top = newNode
+        this.size ++
+    }
+
+    
 }
+
+
