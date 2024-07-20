@@ -38,7 +38,13 @@ export default class Stack {
         this.size = 0
         return this.top
     }
+
+    // if top node exists, return it's data
+    peek() {
+        return this.top? this.top.data : null
+    }
 }
+
 
 
 
