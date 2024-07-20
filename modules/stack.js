@@ -2,8 +2,6 @@
 //
 // To build:
 // -Stack class with
-//   -push()
-//   -pop()
 //   -clear()
 
 // single unit of data on the stack
@@ -21,6 +19,7 @@ export default class Stack {
         this.size = 0
     }
 
+    // add node to top of stack
     push(data) {
         const newNode = new Node(data)
         newNode.next = this.top
@@ -28,7 +27,13 @@ export default class Stack {
         this.size ++
     }
 
-    
+    // remove node from top of stack
+    pop() {
+        if (!this.top) return null
+        const popped = this.top
+        this.top = this.top.next
+        this.size --
+        return popped.data
+    }
 }
-
 
