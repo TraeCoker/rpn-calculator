@@ -1,0 +1,27 @@
+{
+  "name": "rpn-calculator",
+  "version": "1.0.0",
+  "description": "CLI reverse polish notation (RPN) calculator",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TraeCoker/rpn-calculator.git"
+  },
+  "keywords": [],
+  "author": "Trae Coker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TraeCoker/rpn-calculator/issues"
+  },
+  "homepage": "https://github.com/TraeCoker/rpn-calculator#readme",
+  "dependencies": {
+    "inquirer": "^10.0.4"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
