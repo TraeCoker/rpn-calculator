@@ -62,5 +62,15 @@ describe('Calculator', () => {
   test('should handle floating point numbers', () => {
     expect(calculator.compute('3.5 2.1 +')).toBeCloseTo(5.6)
   })
-  
+
+  test('should maintain state between computations', () => {
+    calculator.compute('3 4 +')
+    expect(calculator.compute('2 *')).toBe(14)
+  })
+
+  test('should clear stack after error', () => {
+    calculator.compute('5 0 /')
+    expect(calculator.compute('1 2 +')).toBe(3)
+  })
+
 })
