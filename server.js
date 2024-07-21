@@ -28,6 +28,14 @@ const promptUser = () => {
             process.exit(1)
         }
 
+        // clear the calculator stack if 'c' is entered
+        if(equation === 'c'){
+            calculator.stack.clear()
+            console.log("The stack has been cleared")
+            promptUser()
+            return
+        }
+
         // output the result of computation
         console.log(calculator.compute(equation))
 
