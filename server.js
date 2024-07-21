@@ -50,3 +50,6 @@ const promptUser = () => {
 
 // initializes the terminal session
 init()
+
+// export for testing
+export {init, promptUser}
