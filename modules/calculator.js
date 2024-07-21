@@ -38,6 +38,13 @@ export default class Calculator {
                         stack.push(num2 - num1)
                         break
                     case "/": // division
+
+                        // Check for division by 0
+                        if(num1 === 0){
+                        stack.clear()
+                        return "Error: Cannot divide by zero! Stack has been cleared."
+                        }
+
                         stack.push(num2 / num1)
                         break
                     case "*": //multiplication
