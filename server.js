@@ -46,6 +46,3 @@ export const promptUser = async () => {
         console.log(error)
     }
 }
-
-// initializes the terminal session
-//init()
