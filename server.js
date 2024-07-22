@@ -26,7 +26,7 @@ export const promptUser = async () => {
         // exit session if 'q' is entered
         if(equation === 'q'){
             console.log('Fare thee well!')
-            process.exit(1)
+            process.exit()
         }
     
         // clear the calculator stack if 'c' is entered

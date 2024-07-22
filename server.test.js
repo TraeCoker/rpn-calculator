@@ -28,7 +28,7 @@ describe('Server', () => {
     await mockPromptAndRunCommand('q')
     
     expect(mockConsoleLog).toHaveBeenCalledWith("Fare thee well!")
-    expect(mockExit).toHaveBeenCalledWith(1)
+    expect(mockExit).toHaveBeenCalled()
   })
 
   test('should handle clear command', async () => {
