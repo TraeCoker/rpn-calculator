@@ -1,5 +1,7 @@
 import { jest } from "@jest/globals"
 import inquirer from "inquirer"
+import gradient from "gradient-string"
+import chalk from "chalk"
 import * as serverModule from "./server.js"
 
 jest.mock('inquirer')
@@ -27,14 +29,14 @@ describe('Server', () => {
   test('should handle quit command', async () => {
     await mockPromptAndRunCommand('q')
     
-    expect(mockConsoleLog).toHaveBeenCalledWith("Fare thee well!")
+    expect(mockConsoleLog).toHaveBeenCalledWith(gradient.pastel('Fare thee well!'))
     expect(mockExit).toHaveBeenCalled()
   })
 
   test('should handle clear command', async () => {
     await mockPromptAndRunCommand('c')
     
-    expect(mockConsoleLog).toHaveBeenCalledWith("The stack has been cleared")
+    expect(mockConsoleLog).toHaveBeenCalledWith(chalk.green("The stack has been cleared"))
   })
 
   test('should maintain state between computations', async () => {
