@@ -1,107 +1,48 @@
-Code Sample
+CLI Reverse Polish Notation (RPN) Calculator
 ===================
 
-We would like to get to know your coding style and see what you would consider your best work.
-In subsequent interviews, we'll talk through your code and make some changes.
+This command line calculator was created as way for users who are comfrotable with UNIX-like CLI utilities to easily execute reverse polish notation equations. [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation), also known as postfix notation, is a method for representing expressions in which the operator symbol is placed after the numbers being operated on: `ex 5 5 +` would return 
+`10`.
 
-CLI RPN Calculator
-==================
+RPN is evaluated here using a stack structure. As the expression is read from left to right:
 
-Implement a command-line reverse polish notation (RPN) calculator using a language that you know well.
+1. If a value appears next in the expression, push the value on to the stack
+2. If an operator appears next in the expression, pop the two items from the top of the stack and push the result of the operation back on to the stack
 
-Imaginary Context
+This calculator implementation currently offers users 3 menu options (input an equation, clear the stack, or quit) and 4 arithmetic operations (addition, subtraction, division, and multiplication). It was built using node.js.
+
+Solution Design
 -----------------
 
-We're building this command-line calculator for people who are comfortable with UNIX-like CLI utilities.
-We are starting with the basic 4 operators now but will want to eventually implement other operators and
-an alternate interface (such as WebSocket, file, or TCP socket).
-There's no need to implement these, but design with these future changes in mind.
+Since the stack used by the calculator relies solely on `push()` and `pop()` functions, I decided to build the stack as a linked list for slight performance gains over an array. I was developing with potential scaling in mind, and although it would be rare for a single calculator to have an extremely large stack, my thought was: what if in the future this application was running several instances of the calculator on a single server? In this case the linked list stack would utilize more efficient memory allocation than an array.
 
-Specifications
+The calculator class was built as a separate module to honor separation of concerns. My choice here was again informed by thinking through probable scaling scenarios: having a separate module allows for a single source where more calculator functions and notations could be added. It also allows the calculator to easily be consumed by other potential interfaces (ie a front-end GUI).
+
+For handling the command line inputs and outputs I chose `inquirer`. This was my first time using this package but I found it provided the funcionality I needed out of the box and kept things easy to read and understand from a developers point of view. For colorizing the text I went with `chalk` and `gradient-string` for easy in-line styling.
+
+I used `jest` to write unit tests for the stack module, calculator module, and server. Since the calculator class utilized the stack class as a dependency, I also wrote integration tests for the calculator module to test their interoperability.
+
+Things I would improve
 --------------
 
-1. The calculator should use standard input and standard output
-2. It should implement the four standard arithmetic operators
-3. The calculator should handle errors and recover gracefully
-4. The calculator should exit when it receives a `q` command or an end of input 
-   indicator (EOF / Ctrl+D)
+Given the nature of the assignment, I decided to focus on the critical functionality and then create tests after the fact. In a different context where I am developing for production systems, I would have likely implemented TDD from the start, instead of waiting.
 
-You may take creative liberty with anything else; have fun with it!
+If I were to spend more time on this project I would build out more unit tests for the server and find ways to run end to end testing. I would also build some kind of front end GUI to test the application's flexibility.
 
-Example Input/Output
+How to run
 --------------------
 
-Use your best judgment as far as the format is concerned, as long as it makes sense to the end user. Your calculator should at the minimum handle the following examples. 
+After pulling to your local system first run:
+```
+npm install
+```
 
-    > 5 
-    5
-    > 8
-    8
-    > +
-    13
+To start the application run:
+```
+npm start
+```
 
----
-
-    > 5 5 5 8 + + -
-    -13.0
-    > 13 +
-    0.0
-
----
-
-    > -3
-    -3.0
-    > -2
-    -2.0
-    > *
-    6.0
-    > 5
-    5.0
-    > +
-    11.0
-
----
-
-    > 5
-    5
-    > 9
-    9
-    > 1
-    1
-    > -
-    8
-    > /
-    0.625
-
-Guidelines
-==========
-
-Things We Care About
---------------------
-
-These hold true both for this submission and for your work here in general. We expect that:
-
-- It works right
-- The code is well-abstracted and uses good names
-- It provides for a good user experience (end-user and programmer)
-- The code adheres to style and practices accepted by the community
-- Tests demonstrate intended use, help prevent regression, and can withstand change
-- You write intention-revealing commit messages
-
-There are a range of expectations from various companies in their interviewing code exercises, from minimal code to get the job done and prove you can program, to expecting exemplary code that demonstrates how well you can design things when the occasion requires it. We tend to judge toward the latter end of the spectrum, assuming that anyone who can write well-crafted code can also scale down quality to do things quickly, but not necessarily the other way around.
-
-Readme
-------
-
-Write your README as if it was for a production service. Include the following items:
-
-* A high-level description of your solution
-* Reasoning behind your technical choices, including architectural
-* Trade-offs you might have made, anything you left out, or what you might do differently if you were to spend additional time on the project
-* How to run your code, if applicable
-* Link to the hosted application, if applicable
-
-Submitting
-----------
-
-Submit your code as a **separate** git repository, preferably on GitHub
+To start the test suite run:
+```
+npm test
+```
